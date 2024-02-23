@@ -1,0 +1,14 @@
+{
+	"lock": false,
+	"tasks": {
+		// test-1 (with no argument to `--watch`) watches ts files but not `docs.md`
+		"test-1": "deno test -A --watch *.test.ts",
+		// test-2 (with "=") correctly treats `docs.md` as an argument to `--watch` flag, but throws
+		// error: unexpected value 'docs.md' for '--watch' found; no more were expected
+		"test-2": "deno test -A --watch=docs.md *.test.ts",
+		// test-3 (without "=") treats `docs.md` as one of the files to be executed and throws due to it not being
+		// executable code:
+		// error: The module's source code could not be parsed: Expected ';', '}' or <eof>
+		"test-3": "deno test -A --watch docs.md *.test.ts",
+	},
+}
